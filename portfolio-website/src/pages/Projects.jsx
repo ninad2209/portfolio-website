@@ -39,6 +39,16 @@ const projects = [
       "A foundational e-commerce project implementing core functionalities such as product handling and user interaction, with a Python-based backend and simple HTML interface.",
     github: "https://github.com/ninad2209/E-Commerce-Website",
   },
+  {
+  id: 2,
+  title: 'Fake Call Detection System',
+  category: 'Machine Learning / NLP',
+  year: '2024',
+  tech: ['Python', 'Scikit-learn', 'NLTK', 'Pandas'],
+  kpi: '64% classification accuracy',
+  description: 'Built a machine learning-based fake call detection system using NLP techniques. Generated synthetic datasets, performed text preprocessing and TF-IDF vectorization, and trained Logistic Regression and SVM models to classify call transcripts as fake or genuine.',
+  github: "https://github.com/ninad2209/Fake-Call-Detection-/blob/main/Fake_Call_Detection_Ninad.ipynb",
+}
 ];
 
 export default function Projects() {

@@ -5,31 +5,41 @@ const skillCategories = [
   {
     label: 'Frontend',
     skills: [
-      { name: 'React / Next.js', level: 95 },
-      { name: 'TypeScript', level: 90 },
-      { name: 'Three.js / WebGL', level: 78 },
-      { name: 'Tailwind CSS', level: 95 },
-      { name: 'Framer Motion', level: 85 },
+      { name: 'React.js', level: 85 },
+      { name: 'Next.js', level: 80 },
+      { name: 'TypeScript', level: 75 },
+      { name: 'JavaScript (ES6+)', level: 85 },
+      { name: 'Tailwind CSS', level: 85 },
     ],
   },
   {
-    label: 'Backend',
+    label: 'Backend & APIs',
     skills: [
-      { name: 'Node.js / Express', level: 85 },
-      { name: 'Python / FastAPI', level: 75 },
-      { name: 'PostgreSQL', level: 80 },
-      { name: 'GraphQL', level: 78 },
-      { name: 'Redis', level: 70 },
+      { name: 'Node.js / Express', level: 75 },
+      { name: 'Django', level: 80 },
+      { name: 'REST APIs', level: 85 },
+      { name: 'MongoDB', level: 75 },
+      { name: 'JWT Authentication', level: 75 },
     ],
   },
   {
-    label: 'Tools & Design',
+    label: 'Machine Learning',
     skills: [
-      { name: 'Figma', level: 88 },
-      { name: 'Git / GitHub', level: 92 },
-      { name: 'AWS / Vercel', level: 80 },
-      { name: 'Docker', level: 72 },
-      { name: 'Jest / Cypress', level: 75 },
+      { name: 'Python', level: 85 },
+      { name: 'Scikit-learn', level: 80 },
+      { name: 'NLP (Text Processing)', level: 75 },
+      { name: 'TF-IDF Vectorization', level: 80 },
+      { name: 'Logistic Regression / SVM', level: 75 },
+    ],
+  },
+  {
+    label: 'Security & Systems',
+    skills: [
+      { name: 'Linux', level: 80 },
+      { name: 'Docker', level: 75 },
+      { name: 'Wireshark', level: 70 },
+      { name: 'Autopsy (Digital Forensics)', level: 70 },
+      { name: 'SIEM Basics', level: 65 },
     ],
   },
 ];
@@ -106,7 +116,7 @@ export default function SkillsSection() {
         >
           <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-6">Also familiar with</p>
           <div className="flex flex-wrap gap-2">
-            {['Svelte', 'Vue.js', 'MongoDB', 'Firebase', 'Supabase', 'Prisma', 'tRPC', 'Storybook', 'Webpack', 'Vite', 'Linux', 'Nginx'].map((tech) => (
+            {[ 'Pandas','NLTK','Regex','Faker','Git & GitHub','Postman','Flask','Axios','Linux',].map((tech) => (
               <span key={tech} className="font-mono text-[11px] px-3 py-1.5 bg-foreground/[0.04] border border-border text-muted-foreground rounded-sm hover:border-primary/40 hover:text-foreground transition-colors cursor-default">
                 {tech}
               </span>

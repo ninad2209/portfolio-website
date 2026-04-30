@@ -6,6 +6,30 @@ import { Link } from 'react-router-dom';
 const projects = [
   {
     id: 1,
+    title: "Christmas Market AR Goggles Prototype",
+    category: "Human Computer Interaction",
+    year: "2026",
+    tech: ["JavaScript", "CSS", "HTML"],
+    kpi: "AR Prototype",
+    description:
+      "An HCI prototype exploring an augmented reality experience for a Christmas market. Focused on interactive UI design and immersive frontend interactions using core web technologies.",
+    github: "https://github.com/ninad2209/Christmas-Market-AR-Goggles-Prototype",
+    color: 'from-purple-500/10 to-pink-500/5'
+  },
+  {
+    id: 2,
+    title: "E-learning Platform",
+    category: "Web Development",
+    year: "2025",
+    tech: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    kpi: "Type-Safe UI",
+    description:
+      "A modern e-learning platform built with React and Next.js, leveraging TypeScript for scalability and maintainability. Features a responsive UI and clean component-driven architecture.",
+    github: "https://github.com/ninad2209/E-learning-Platform",
+    color: 'from-green-500/10 to-emerald-500/5'
+  },
+  {
+    id: 3,
     title: 'E-Commerce Platform',
     category: 'Web Development',
     year: '2025',
@@ -15,35 +39,16 @@ const projects = [
     color: 'from-blue-500/10 to-indigo-500/5',
   },
   {
-    id: 2,
-    title: 'FinTech Dashboard',
-    category: 'UI/UX Engineering',
-    year: '2024',
-    tech: ['TypeScript', 'Three.js', 'D3'],
-    kpi: '45% faster decisions',
-    description: 'Real-time financial analytics with 3D data visualizations and predictive modeling interfaces for enterprise clients.',
-    color: 'from-emerald-500/10 to-teal-500/5',
-  },
-  {
-    id: 3,
-    title: 'Health & Wellness App',
-    category: 'Mobile + Web',
-    year: '2024',
-    tech: ['React Native', 'GraphQL', 'AWS'],
-    kpi: '50K+ users',
-    description: 'Cross-platform wellness app with biometric integration and personalized health journey tracking.',
-    color: 'from-rose-500/10 to-pink-500/5',
-  },
-  {
-    id: 4,
-    title: 'SaaS Analytics Suite',
-    category: 'Full-Stack',
-    year: '2023',
-    tech: ['Next.js', 'Python', 'Redis'],
-    kpi: '99.9% uptime',
-    description: 'Enterprise analytics platform processing millions of events daily with real-time dashboards and reporting.',
-    color: 'from-violet-500/10 to-purple-500/5',
-  },
+  id: 4,
+  title: 'Fake Call Detection System',
+  category: 'Machine Learning / NLP',
+  year: '2024',
+  tech: ['Python', 'Scikit-learn', 'NLTK', 'Pandas'],
+  kpi: '64% classification accuracy',
+  description: 'Built a machine learning-based fake call detection system using NLP techniques. Generated synthetic datasets, performed text preprocessing and TF-IDF vectorization, and trained Logistic Regression and SVM models to classify call transcripts as fake or genuine.',
+  color: 'from-red-500/10 to-orange-500/5',
+}
+  
 ];
 
 export default function ProjectsSection() {

@@ -4,28 +4,28 @@ import { GraduationCap, Award } from 'lucide-react';
 
 const education = [
   {
-    degree: 'B.Tech in Computer Engineering',
-    institution: 'University Name',
-    period: '2019 — 2023',
-    grade: 'CGPA: 8.7 / 10',
-    description: 'Specialized in full-stack development, algorithms, and human-computer interaction. Led the college tech club and organized 3 inter-college hackathons.',
-    highlights: ['Data Structures', 'Web Development', 'UI/UX Design', 'Machine Learning'],
+    degree: 'Masters in Cybersecurity',
+    institution: 'Saarland University',
+    period: '2025 — 2027',
+    description: 'Gained knowledge in network and OS security, encryption/decryption techniques, and common cyber attacks. Developed understanding of web security concepts including authentication and cookies.',
+    highlights: ['Network Security','OS Security','Encryption & Decryption','Web Security (Authentication,Cookies,Attacks)'],
   },
   {
-    degree: 'Higher Secondary Certificate (HSC)',
-    institution: 'School Name',
-    period: '2017 — 2019',
-    grade: '87.4%',
-    description: 'Science stream with Mathematics, Physics, and Computer Science. Developed early interest in programming and logic design.',
-    highlights: ['Mathematics', 'Physics', 'Computer Science'],
+    degree: 'Masters in Computer Applications',
+    institution: 'MIT-World Peace University',
+    period: '2022 — 2024',
+    grade: 'Grade: 8.5 CGPA',
+    description: 'Gained knowledge in cloud computing, web development using Angular, Advanced Java, RDBMS, and fundamentals of AI/ML and DevOps.',
+    highlights: ['Cloud Computing', 'Angular Web Development', 'Advanced Java', 'RDBMS', 'AI/ML Basics', 'DevOps'],
   },
 ];
 
 const certifications = [
-  { name: 'Meta React Developer Professional', issuer: 'Meta', year: '2023' },
-  { name: 'AWS Cloud Practitioner', issuer: 'Amazon', year: '2023' },
-  { name: 'Google UX Design Certificate', issuer: 'Google', year: '2022' },
-  { name: 'Full Stack Web Development', issuer: 'freeCodeCamp', year: '2022' },
+  { name: ' Security Monitoring and SIEM fundamentals', issuer: 'LinkedIn,HackTheBox', year: '2026' },
+  { name: 'Ethical Hacking', issuer: 'Udemy', year: '2024' },
+  { name: 'Artificial Intelligence Job Simulation', issuer: 'Cognizant', year: '2024' },
+  { name: 'Python Programming', issuer: 'Udemy', year: '2024' },
+  { name: 'Ethical Hacking-File Inclusion', issuer: 'Udemy', year: '2024' },
 ];
 
 export default function EducationSection() {

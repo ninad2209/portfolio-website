@@ -7,25 +7,10 @@ const experiences = [
     company: 'Tirukamal Innovative Solutions Pvt. Ltd.',
     period: 'Feb 2024 - June 2024',
     type: 'Full-time Internship',
-    description: 'Architected and delivered complex React-based platforms serving 100K+ users. Led a team of 4 engineers, established component libraries and design systems.',
-    highlights: ['React', 'TypeScript', 'Three.js', 'AWS'],
+    description: 'Developed and maintained modern frontend/backend frameworks and components while integrating secure development practices, including SSL/TLS configuration for encrypted communication. Collaborated with cross-functional teams to enhance usability and application reliability, and contributed to cybersecurity awareness through internal presentations.',
+    highlights: ['Frontend Development','Backend Development','Web Security','SSL/TLS','Cybersecurity Awareness','Team Collaboration'],
   },
-  {
-    role: 'UI/UX Engineer',
-    company: 'Digital Studio XYZ',
-    period: '2022 — 2024',
-    type: 'Full-time',
-    description: 'Designed and built high-fidelity interfaces for SaaS products, improving user retention by 40%. Collaborated directly with product and design teams.',
-    highlights: ['Figma', 'React', 'Framer Motion', 'Node.js'],
-  },
-  {
-    role: 'Frontend Developer',
-    company: 'Freelance',
-    period: '2021 — 2022',
-    type: 'Contract',
-    description: 'Built custom web solutions for 12+ clients across e-commerce, fintech, and healthcare verticals. Delivered pixel-perfect, performant interfaces.',
-    highlights: ['HTML/CSS', 'JavaScript', 'WordPress', 'Shopify'],
-  },
+  
 ];
 
 const containerVariants = {

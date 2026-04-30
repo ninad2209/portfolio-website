@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import LogoAnimation from './LogoAnimation';
 
+
 const socialLinks = [
   {
     name: 'GitHub',
@@ -48,6 +49,11 @@ const navLinks = [
   { name: 'Contact', path: '/contact' },
 ];
 
+const handleNavClick = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -86,6 +92,7 @@ export default function Footer() {
                 <Link
                   key={link.path}
                   to={link.path}
+                  onClick={handleNavClick}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
                   {link.name}
