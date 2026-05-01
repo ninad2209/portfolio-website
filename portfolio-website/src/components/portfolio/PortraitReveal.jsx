@@ -5,6 +5,10 @@ const COLS = 5;
 const ROWS = 6;
 const TOTAL = COLS * ROWS;
 
+const ZOOM = 1.3;
+const OFFSET_X = -12; // % shift left
+const OFFSET_Y = 0;   // % shift vertical
+
 export default function PortraitReveal({ imageUrl }) {
   const [started, setStarted] = useState(false);
 
