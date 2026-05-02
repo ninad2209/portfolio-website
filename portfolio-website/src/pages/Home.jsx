@@ -25,23 +25,36 @@ export default function Home() {
   return (
     <div className="bg-background font-inter relative pb-24 sm:pb-0">
       <FloatingNav />
-      <div className="fixed right-4 top-4 z-50 sm:right-6 sm:top-6">
-        <DarkModeToggle />
-      </div>
-
 
       <section
         id="home"
-        className="min-h-[100svh] flex flex-col lg:flex-row items-center justify-start lg:justify-center relative"
+        className="min-h-[100svh] flex flex-col lg:flex-row items-center justify-start lg:justify-center relative pb-24 sm:pb-0"
       >
-        <div className="flex-1 flex flex-col justify-center px-5 sm:px-8 md:px-16 lg:px-24 pt-24 sm:pt-28 lg:pt-0 z-10 text-center lg:text-left">
+        {/* Mobile Top Controls */}
+        <div className="lg:hidden">
+          <div className="absolute top-4 left-4 z-40">
+            <LogoAnimation className="h-9 w-9" />
+        </div>
+        
+        <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 
+                bg-background/60 backdrop-blur-md 
+                p-2 rounded-full shadow-md">
+        <DarkModeToggle />
+        </div>
+      </div>
+
+        <div className="hidden lg:block fixed right-6 top-6 z-50">
+          <DarkModeToggle />
+        </div>
+
+        <div className="w-full lg:flex-1 flex flex-col justify-start lg:justify-center px-5 sm:px-8 md:px-16 lg:px-24 pt-28 sm:pt-28 lg:pt-0 z-10 text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-8 hidden lg:block"
           >
-            <LogoAnimation />
+            <LogoAnimation className="h-16 w-16" />
           </motion.div>
 
           <motion.p
@@ -57,7 +70,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-[2rem] sm:text-5xl md:text-6xl lg:text-[5.5vw] xl:text-[4.5vw] font-bold leading-[1.05] tracking-tight text-foreground max-w-2xl mx-auto lg:mx-0"
+            className="text-[1.75rem] min-[390px]:text-[1.9rem] sm:text-5xl md:text-6xl lg:text-[5.5vw] xl:text-[4.5vw] font-bold leading-[1.08] tracking-tight text-foreground max-w-[22rem] sm:max-w-2xl mx-auto lg:mx-0"
           >
             Engineering digital interfaces that deliver{" "}
             <span className="text-primary">results</span>.
@@ -67,7 +80,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.1 }}
-            className="flex flex-row flex-wrap justify-center lg:justify-start gap-3 mt-7 sm:mt-10"
+            className="hidden lg:flex flex-row flex-wrap justify-center lg:justify-start gap-3 mt-6 sm:mt-10"
           >
             <button
               type="button"
@@ -112,13 +125,12 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <motion.div className="w-full lg:w-[48%] h-[30svh] min-h-[190px] max-h-[260px] lg:h-screen lg:max-h-none relative flex items-center justify-center">
-
+        <motion.div className="w-full lg:w-[48%] h-[24svh] min-h-[160px] max-h-[215px] lg:h-screen lg:max-h-none relative flex items-center justify-center mt-8 sm:mt-10 lg:mt-0">
           <div
             className="relative z-10 overflow-hidden"
             style={{
-              width: "min(360px, 62vw)",
-              height: "min(360px, 62vw)",
+              width: "min(300px, 54vw)",
+              height: "min(300px, 54vw)",
               borderRadius: "50%",
             }}
           >
@@ -131,8 +143,8 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 1.05, ease: "easeOut" }}
             className="absolute z-20 pointer-events-none"
             style={{
-              width: "min(360px, 68vw)",
-              height: "min(360px, 68vw)",
+              width: "min(300px, 54vw)",
+              height: "min(300px, 54vw)",
               borderRadius: "50%",
               border: "5px solid hsl(var(--primary))",
               boxShadow: "0 0 0 10px hsl(var(--primary) / 0.15)",
@@ -148,8 +160,8 @@ export default function Home() {
             }}
             className="absolute z-30 pointer-events-none"
             style={{
-              width: "min(360px, 68vw)",
-              height: "min(360px, 68vw)",
+              width: "min(300px, 54vw)",
+              height: "min(300px, 54vw)",
               borderRadius: "50%",
               background:
                 "conic-gradient(from 0deg, transparent 0%, transparent 75%, hsl(var(--primary)) 85%, transparent 95%)",
@@ -167,8 +179,8 @@ export default function Home() {
             }}
             className="absolute z-30 pointer-events-none"
             style={{
-              width: "min(360px, 68vw)",
-              height: "min(360px, 68vw)",
+              width: "min(300px, 54vw)",
+              height: "min(300px, 54vw)",
               borderRadius: "50%",
               background:
                 "conic-gradient(from 180deg, transparent 0%, transparent 80%, hsl(var(--primary) / 0.4) 90%, transparent 100%)",
@@ -176,6 +188,31 @@ export default function Home() {
               mask: "radial-gradient(circle, transparent 68%, black 72%)",
             }}
           />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.15 }}
+          className="flex w-full justify-center gap-3 px-5 mt-7 lg:hidden"
+        >
+          <button
+            type="button"
+            onClick={() => scrollToSection("contact")}
+            className="group inline-flex flex-1 max-w-[165px] items-center justify-center gap-2 px-4 py-3 bg-primary text-primary-foreground font-medium text-sm tracking-wide rounded-sm hover:bg-primary/90 transition-all duration-300"
+          >
+            Contact Me
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scrollToSection("projects")}
+            className="group inline-flex flex-1 max-w-[165px] items-center justify-center gap-2 px-4 py-3 border-2 border-foreground text-foreground font-medium text-sm tracking-wide rounded-sm hover:bg-foreground hover:text-background transition-all duration-300"
+          >
+            View Work
+            <ArrowDownRight className="w-4 h-4 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
+          </button>
         </motion.div>
       </section>
 

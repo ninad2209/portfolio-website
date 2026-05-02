@@ -1,52 +1,44 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
+import logo from "../../assets/images/logo.png";
 
-export default function LogoAnimation() {
-  const pathVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: {
-      pathLength: 1,
-      opacity: 1,
-      transition: {
-        pathLength: { duration: 1.5, ease: "easeInOut" },
-        opacity: { duration: 0.3 }
-      }
-    }
-  };
-
+export default function LogoAnimation({
+  className = "h-11 w-11 lg:h-16 lg:w-16",
+}) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="flex items-center"
+      initial={{ opacity: 0, scale: 0.92, y: -6 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={`relative inline-flex items-center justify-center ${className}`}
     >
-      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* N */}
-        <motion.path
-          d="M8 42V14L22 42V14"
-          stroke="hsl(var(--foreground))"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-          variants={pathVariants}
-          initial="hidden"
-          animate="visible"
-        />
-        {/* P */}
-        <motion.path
-          d="M30 42V14H40C44 14 47 17 47 22C47 27 44 30 40 30H30"
-          stroke="hsl(var(--foreground))"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-          variants={pathVariants}
-          initial="hidden"
-          animate="visible"
-        />
-      </svg>
+      <motion.div
+        aria-hidden="true"
+        className="absolute inset-0 rounded-full bg-primary/30 blur-xl"
+        animate={{
+          opacity: [0.35, 0.75, 0.35],
+          scale: [0.9, 1.18, 0.9],
+        }}
+        transition={{
+          duration: 3.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <motion.img
+        src={logo}
+        alt="Ninad Pangare logo"
+        className="relative z-10 h-full w-full object-contain drop-shadow-sm"
+        animate={{
+          y: [0, -2, 0],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
     </motion.div>
   );
 }

@@ -73,7 +73,7 @@ export default function Footer() {
               className="block text-left"
               aria-label="Scroll to home section"
             >
-              <LogoAnimation />
+              <LogoAnimation className="h-10 w-10 sm:h-12 sm:w-12" />
             </button>
 
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
