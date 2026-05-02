@@ -5,7 +5,7 @@ A modern, responsive personal portfolio website built to showcase my skills, pro
 ---
 
 ## ✨ Live Demo
-🚀 Deployed on Vercel: *(add link after deployment)*
+🚀 Deployed on Vercel: https://ninad2209.vercel.app/
 
 ---
 
