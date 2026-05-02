@@ -129,8 +129,8 @@ export default function Home() {
           <div
             className="relative z-10 overflow-hidden"
             style={{
-              width: "min(300px, 54vw)",
-              height: "min(300px, 54vw)",
+              width: "min(420px, 70vw)",
+              height: "min(420px, 70vw)",
               borderRadius: "50%",
             }}
           >
@@ -143,8 +143,8 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 1.05, ease: "easeOut" }}
             className="absolute z-20 pointer-events-none"
             style={{
-              width: "min(300px, 54vw)",
-              height: "min(300px, 54vw)",
+              width: "min(420px, 70vw)",
+              height: "min(420px, 70vw)",
               borderRadius: "50%",
               border: "5px solid hsl(var(--primary))",
               boxShadow: "0 0 0 10px hsl(var(--primary) / 0.15)",
@@ -160,8 +160,8 @@ export default function Home() {
             }}
             className="absolute z-30 pointer-events-none"
             style={{
-              width: "min(300px, 54vw)",
-              height: "min(300px, 54vw)",
+              width: "min(420px, 70vw)",
+              height: "min(420px, 70vw)",
               borderRadius: "50%",
               background:
                 "conic-gradient(from 0deg, transparent 0%, transparent 75%, hsl(var(--primary)) 85%, transparent 95%)",
@@ -179,8 +179,8 @@ export default function Home() {
             }}
             className="absolute z-30 pointer-events-none"
             style={{
-              width: "min(300px, 54vw)",
-              height: "min(300px, 54vw)",
+              width: "min(420px, 70vw)",
+              height: "min(420px, 70vw)",
               borderRadius: "50%",
               background:
                 "conic-gradient(from 180deg, transparent 0%, transparent 80%, hsl(var(--primary) / 0.4) 90%, transparent 100%)",
@@ -194,7 +194,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.15 }}
-          className="flex w-full justify-center gap-3 px-5 mt-7 lg:hidden"
+          className="flex w-full justify-center gap-3 px-5 mt-20 sm:mt-24 lg:hidden"
         >
           <button
             type="button"
