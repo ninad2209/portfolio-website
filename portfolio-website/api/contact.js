@@ -1,4 +1,5 @@
 import emailjs from "@emailjs/nodejs";
+import { redis } from "../src/lib/redis.js"; // adjust if you move lib out of src
 
 const allowedServices = new Set([
   "Frontend Development",
@@ -7,7 +8,9 @@ const allowedServices = new Set([
   "Product Management",
 ]);
 
-const rateLimitMap = new Map();
+// ----------------------
+// Utility functions
+// ----------------------
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -21,26 +24,27 @@ function getClientIp(req) {
   );
 }
 
-function isRateLimited(ip) {
-  const now = Date.now();
-  const windowMs = 15 * 60 * 1000;
+// ----------------------
+// Redis-based rate limit
+// ----------------------
+
+async function isRateLimited(ip) {
+  const key = `rate-limit:${ip}`;
+  const windowSeconds = 15 * 60; // 15 minutes
   const maxRequests = 3;
 
-  const record = rateLimitMap.get(ip) || { count: 0, resetAt: now + windowMs };
+  const requests = await redis.incr(key);
 
-  if (now > record.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + windowMs });
-    return false;
+  if (requests === 1) {
+    await redis.expire(key, windowSeconds);
   }
 
-  if (record.count >= maxRequests) {
-    return true;
-  }
-
-  record.count += 1;
-  rateLimitMap.set(ip, record);
-  return false;
+  return requests > maxRequests;
 }
+
+// ----------------------
+// Main handler
+// ----------------------
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -49,7 +53,8 @@ export default async function handler(req, res) {
 
   const ip = getClientIp(req);
 
-  if (isRateLimited(ip)) {
+  // 🔐 Rate limiting
+  if (await isRateLimited(ip)) {
     return res.status(429).json({
       message: "Too many requests. Please try again later.",
     });
@@ -57,14 +62,23 @@ export default async function handler(req, res) {
 
   const { name, email, services, message, honeypot } = req.body || {};
 
+  // 🕳 Honeypot spam protection
   if (honeypot) {
     return res.status(400).json({ message: "Invalid request" });
   }
+
+  // ----------------------
+  // Clean input
+  // ----------------------
 
   const cleanName = String(name || "").trim();
   const cleanEmail = String(email || "").trim();
   const cleanMessage = String(message || "").trim();
   const cleanServices = Array.isArray(services) ? services : [];
+
+  // ----------------------
+  // Validation
+  // ----------------------
 
   if (cleanName.length < 2 || cleanName.length > 80) {
     return res.status(400).json({ message: "Invalid name" });
@@ -81,10 +95,14 @@ export default async function handler(req, res) {
   if (
     cleanServices.length === 0 ||
     cleanServices.length > 4 ||
-    cleanServices.some((service) => !allowedServices.has(service))
+    cleanServices.some((s) => !allowedServices.has(s))
   ) {
     return res.status(400).json({ message: "Invalid services" });
   }
+
+  // ----------------------
+  // Send email
+  // ----------------------
 
   try {
     await emailjs.send(
@@ -102,9 +120,14 @@ export default async function handler(req, res) {
       }
     );
 
-    return res.status(200).json({ message: "Message sent successfully" });
+    return res.status(200).json({
+      message: "Message sent successfully",
+    });
   } catch (error) {
     console.error("EmailJS error:", error);
-    return res.status(500).json({ message: "Failed to send message" });
+
+    return res.status(500).json({
+      message: "Failed to send message",
+    });
   }
 }
