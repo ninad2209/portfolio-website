@@ -89,7 +89,7 @@ export default function Home() {
               className="group px-6 py-3 bg-primary text-primary-foreground rounded-sm flex items-center gap-2"
             >
               Contact Me
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+              <ArrowDownRight className="w-4 h-4 group-hover:translate-y-1 transition" />
             </button>
 
             <button
@@ -97,7 +97,7 @@ export default function Home() {
               className="group px-6 py-3 border-2 border-foreground rounded-sm flex items-center gap-2 hover:bg-foreground hover:text-background transition"
             >
               View Projects
-              <ArrowDownRight className="w-4 h-4 group-hover:translate-x-1 group-hover:translate-y-1 transition" />
+              <ArrowDownRight className="w-4 h-4 group-hover:translate-y-1 transition" />
             </button>
           </motion.div>
         </div>
@@ -105,29 +105,87 @@ export default function Home() {
         {/* RIGHT SIDE IMAGE */}
         <motion.div className="w-full lg:w-[48%] flex items-center justify-center mt-12 sm:mt-16 lg:mt-0">
 
-          {/* Image */}
-          <div className="relative z-10 overflow-hidden 
-              w-[min(280px,70vw)] 
-              sm:w-[min(340px,60vw)] 
-              md:w-[min(400px,50vw)] 
-              lg:w-[min(480px,40vw)] 
-              aspect-square rounded-full">
-            <PortraitReveal imageUrl={PORTRAIT_URL} />
-          </div>
+  {/* Wrapper (IMPORTANT for positioning) */}
+  <div className="relative flex items-center justify-center">
 
-          {/* Border Ring */}
-          <motion.div
-            className="absolute z-20 pointer-events-none rounded-full border-[6px] border-primary"
-            style={{
-              width: "100%",
-              height: "100%",
-              maxWidth: "480px",
-              aspectRatio: "1/1",
-            }}
-          />
+    {/* Image */}
+    <div className="relative z-10 overflow-hidden 
+        w-[min(280px,70vw)] 
+        sm:w-[min(340px,60vw)] 
+        md:w-[min(400px,50vw)] 
+        lg:w-[min(480px,40vw)] 
+        aspect-square rounded-full">
+      <PortraitReveal imageUrl={PORTRAIT_URL} />
+    </div>
 
-        </motion.div>
+    {/* ✅ Mobile Border */}
+    <motion.div
+      className="absolute z-20 pointer-events-none rounded-full border-[6px] border-primary lg:hidden"
+      style={{
+        width: "100%",
+        height: "100%",
+        maxWidth: "480px",
+        aspectRatio: "1/1",
+      }}
+    />
 
+    {/* ✅ Desktop Static Ring */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, delay: 1 }}
+      className="absolute z-20 pointer-events-none hidden lg:block"
+      style={{
+        width: "min(480px, 40vw)",
+        height: "min(480px, 40vw)",
+        borderRadius: "50%",
+        border: "5px solid hsl(var(--primary))",
+        boxShadow: "0 0 0 10px hsl(var(--primary) / 0.15)",
+      }}
+    />
+
+    {/* ✅ Desktop Rotating Ring 1 */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, rotate: 360 }}
+      transition={{
+        opacity: { duration: 0.6, delay: 1.2 },
+        rotate: { repeat: Infinity, duration: 5, ease: "linear" },
+      }}
+      className="absolute z-30 pointer-events-none hidden lg:block"
+      style={{
+        width: "min(480px, 40vw)",
+        height: "min(480px, 40vw)",
+        borderRadius: "50%",
+        background:
+          "conic-gradient(from 0deg, transparent 0%, transparent 75%, hsl(var(--primary)) 85%, transparent 95%)",
+        WebkitMask: "radial-gradient(circle, transparent 68%, black 72%)",
+        mask: "radial-gradient(circle, transparent 68%, black 72%)",
+      }}
+    />
+
+    {/* ✅ Desktop Rotating Ring 2 */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, rotate: -360 }}
+      transition={{
+        opacity: { duration: 0.6, delay: 1.3 },
+        rotate: { repeat: Infinity, duration: 8, ease: "linear" },
+      }}
+      className="absolute z-30 pointer-events-none hidden lg:block"
+      style={{
+        width: "min(480px, 40vw)",
+        height: "min(480px, 40vw)",
+        borderRadius: "50%",
+        background:
+          "conic-gradient(from 180deg, transparent 0%, transparent 80%, hsl(var(--primary) / 0.4) 90%, transparent 100%)",
+        WebkitMask: "radial-gradient(circle, transparent 68%, black 72%)",
+        mask: "radial-gradient(circle, transparent 68%, black 72%)",
+      }}
+    />
+
+  </div>
+</motion.div>
         {/* MOBILE BUTTONS */}
         <motion.div
           initial={{ opacity: 0 }}
