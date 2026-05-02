@@ -125,7 +125,7 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <motion.div className="w-full lg:w-[48%] h-[24svh] min-h-[160px] max-h-[215px] lg:h-screen lg:max-h-none relative flex items-center justify-center mt-8 sm:mt-10 lg:mt-0">
+        <motion.div className="w-full lg:w-[48%] flex items-center justify-center mt-12 sm:mt-16 lg:mt-0">
           <div
             className="relative z-10 overflow-hidden"
             style={{
