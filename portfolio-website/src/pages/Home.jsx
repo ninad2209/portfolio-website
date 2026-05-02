@@ -30,29 +30,30 @@ export default function Home() {
         id="home"
         className="min-h-[100svh] flex flex-col lg:flex-row items-center justify-start lg:justify-center relative pb-24 sm:pb-0"
       >
-        {/* Mobile Top Controls */}
+        {/* Mobile Controls */}
         <div className="lg:hidden">
           <div className="absolute top-4 left-4 z-40">
             <LogoAnimation className="h-9 w-9" />
-        </div>
-        
-        <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 
-                bg-background/60 backdrop-blur-md 
-                p-2 rounded-full shadow-md">
-        <DarkModeToggle />
-        </div>
-      </div>
+          </div>
 
+          <div className="fixed top-4 right-4 z-50 bg-background/60 backdrop-blur-md p-2 rounded-full shadow-md">
+            <DarkModeToggle />
+          </div>
+        </div>
+
+        {/* Desktop Toggle */}
         <div className="hidden lg:block fixed right-6 top-6 z-50">
           <DarkModeToggle />
         </div>
 
-        <div className="w-full lg:flex-1 flex flex-col justify-start lg:justify-center px-5 sm:px-8 md:px-16 lg:px-24 pt-28 sm:pt-28 lg:pt-0 z-10 text-center lg:text-left">
+        {/* LEFT SIDE TEXT */}
+        <div className="w-full lg:flex-1 flex flex-col justify-start lg:justify-center px-5 sm:px-8 md:px-16 lg:px-24 pt-28 lg:pt-0 z-10 text-center lg:text-left">
+          
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-8 hidden lg:block"
+            className="mb-6 hidden lg:block"
           >
             <LogoAnimation className="h-16 w-16" />
           </motion.div>
@@ -60,8 +61,8 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="font-mono text-xs sm:text-sm md:text-base tracking-widest uppercase text-muted-foreground mb-3 sm:mb-4"
+            transition={{ delay: 0.5 }}
+            className="font-mono text-xs sm:text-sm tracking-widest uppercase text-muted-foreground mb-3"
           >
             Hello, I'm Ninad
           </motion.p>
@@ -69,191 +70,95 @@ export default function Home() {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-[1.75rem] min-[390px]:text-[1.9rem] sm:text-5xl md:text-6xl lg:text-[5.5vw] xl:text-[4.5vw] font-bold leading-[1.08] tracking-tight text-foreground max-w-[22rem] sm:max-w-2xl mx-auto lg:mx-0"
+            transition={{ delay: 0.7 }}
+            className="text-[1.6rem] min-[390px]:text-[1.8rem] sm:text-4xl md:text-6xl lg:text-[5vw] xl:text-[4vw] font-bold leading-tight tracking-tight text-foreground max-w-[22rem] sm:max-w-2xl mx-auto lg:mx-0"
           >
             Engineering digital interfaces that deliver{" "}
             <span className="text-primary">results</span>.
           </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
-            className="hidden lg:flex flex-row flex-wrap justify-center lg:justify-start gap-3 mt-6 sm:mt-10"
-          >
-            <button
-              type="button"
-              onClick={() => scrollToSection("contact")}
-              className="group inline-flex items-center justify-center gap-2 px-5 sm:px-8 py-3 sm:py-4 bg-primary text-primary-foreground font-medium text-sm tracking-wide rounded-sm hover:bg-primary/90 transition-all duration-300"
-            >
-              Contact Me
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-
-            <button
-              type="button"
-              onClick={() => scrollToSection("projects")}
-              className="group inline-flex items-center justify-center gap-2 px-5 sm:px-8 py-3 sm:py-4 border-2 border-foreground text-foreground font-medium text-sm tracking-wide rounded-sm hover:bg-foreground hover:text-background transition-all duration-300"
-            >
-              View Projects
-              <ArrowDownRight className="w-4 h-4 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
-            </button>
-          </motion.div>
-
+          {/* Desktop Buttons */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.4 }}
-            className="mt-10 lg:mt-24 hidden sm:flex gap-12 justify-center lg:justify-start"
+            transition={{ delay: 1 }}
+            className="hidden lg:flex gap-3 mt-10"
           >
-            <div>
-              <p className="font-mono text-[10px] uppercase text-muted-foreground mb-1">
-                Availability
-              </p>
-              <p className="font-mono text-xs text-foreground">
-                Open for projects
-              </p>
-            </div>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="group px-6 py-3 bg-primary text-primary-foreground rounded-sm flex items-center gap-2"
+            >
+              Contact Me
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+            </button>
 
-            <div>
-              <p className="font-mono text-[10px] uppercase text-muted-foreground mb-1">
-                Based in
-              </p>
-              <p className="font-mono text-xs text-foreground">Germany</p>
-            </div>
+            <button
+              onClick={() => scrollToSection("projects")}
+              className="group px-6 py-3 border-2 border-foreground rounded-sm flex items-center gap-2 hover:bg-foreground hover:text-background transition"
+            >
+              View Projects
+              <ArrowDownRight className="w-4 h-4 group-hover:translate-x-1 group-hover:translate-y-1 transition" />
+            </button>
           </motion.div>
         </div>
 
+        {/* RIGHT SIDE IMAGE */}
         <motion.div className="w-full lg:w-[48%] flex items-center justify-center mt-12 sm:mt-16 lg:mt-0">
-          <div
-            className="relative z-10 overflow-hidden"
-            style={{
-              width: "min(420px, 70vw)",
-              height: "min(420px, 70vw)",
-              borderRadius: "50%",
-            }}
-          >
+
+          {/* Image */}
+          <div className="relative z-10 overflow-hidden 
+              w-[min(280px,70vw)] 
+              sm:w-[min(340px,60vw)] 
+              md:w-[min(400px,50vw)] 
+              lg:w-[min(480px,40vw)] 
+              aspect-square rounded-full">
             <PortraitReveal imageUrl={PORTRAIT_URL} />
           </div>
 
+          {/* Border Ring */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.88 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 1.05, ease: "easeOut" }}
-            className="absolute z-20 pointer-events-none"
+            className="absolute z-20 pointer-events-none rounded-full border-[6px] border-primary"
             style={{
-              width: "min(420px, 70vw)",
-              height: "min(420px, 70vw)",
-              borderRadius: "50%",
-              border: "5px solid hsl(var(--primary))",
-              boxShadow: "0 0 0 10px hsl(var(--primary) / 0.15)",
+              width: "100%",
+              height: "100%",
+              maxWidth: "480px",
+              aspectRatio: "1/1",
             }}
           />
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, rotate: 360 }}
-            transition={{
-              opacity: { duration: 0.6, delay: 1.3 },
-              rotate: { repeat: Infinity, duration: 5, ease: "linear" },
-            }}
-            className="absolute z-30 pointer-events-none"
-            style={{
-              width: "min(420px, 70vw)",
-              height: "min(420px, 70vw)",
-              borderRadius: "50%",
-              background:
-                "conic-gradient(from 0deg, transparent 0%, transparent 75%, hsl(var(--primary)) 85%, transparent 95%)",
-              WebkitMask: "radial-gradient(circle, transparent 68%, black 72%)",
-              mask: "radial-gradient(circle, transparent 68%, black 72%)",
-            }}
-          />
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, rotate: -360 }}
-            transition={{
-              opacity: { duration: 0.6, delay: 1.35 },
-              rotate: { repeat: Infinity, duration: 8, ease: "linear" },
-            }}
-            className="absolute z-30 pointer-events-none"
-            style={{
-              width: "min(420px, 70vw)",
-              height: "min(420px, 70vw)",
-              borderRadius: "50%",
-              background:
-                "conic-gradient(from 180deg, transparent 0%, transparent 80%, hsl(var(--primary) / 0.4) 90%, transparent 100%)",
-              WebkitMask: "radial-gradient(circle, transparent 68%, black 72%)",
-              mask: "radial-gradient(circle, transparent 68%, black 72%)",
-            }}
-          />
         </motion.div>
 
+        {/* MOBILE BUTTONS */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.15 }}
-          className="flex w-full justify-center gap-3 px-5 mt-20 sm:mt-24 lg:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="flex w-full justify-center gap-3 px-5 mt-16 sm:mt-20 lg:hidden"
         >
           <button
-            type="button"
             onClick={() => scrollToSection("contact")}
-            className="group inline-flex flex-1 max-w-[165px] items-center justify-center gap-2 px-4 py-3 bg-primary text-primary-foreground font-medium text-sm tracking-wide rounded-sm hover:bg-primary/90 transition-all duration-300"
+            className="flex-1 max-w-[160px] px-4 py-3 bg-primary text-primary-foreground rounded-sm flex items-center justify-center gap-2"
           >
-            Contact Me
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            Contact
+            <ArrowRight className="w-4 h-4" />
           </button>
 
           <button
-            type="button"
             onClick={() => scrollToSection("projects")}
-            className="group inline-flex flex-1 max-w-[165px] items-center justify-center gap-2 px-4 py-3 border-2 border-foreground text-foreground font-medium text-sm tracking-wide rounded-sm hover:bg-foreground hover:text-background transition-all duration-300"
+            className="flex-1 max-w-[160px] px-4 py-3 border-2 border-foreground rounded-sm flex items-center justify-center gap-2"
           >
-            View Work
-            <ArrowDownRight className="w-4 h-4 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
+            Work
+            <ArrowDownRight className="w-4 h-4" />
           </button>
         </motion.div>
       </section>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-8 right-8 hidden lg:flex flex-col items-center gap-2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity }}
-          className="w-5 h-8 rounded-full border border-muted-foreground/40 flex items-start justify-center pt-1.5"
-        >
-          <div className="w-1 h-2 rounded-full bg-primary" />
-        </motion.div>
-
-        <span className="font-mono text-[9px] uppercase text-muted-foreground/60">
-          scroll
-        </span>
-      </motion.div>
-
-      <section id="experience">
-        <ExperienceSection />
-      </section>
-
-      <section id="projects">
-        <ProjectsSection />
-      </section>
-
-      <section id="skills">
-        <SkillsSection />
-      </section>
-
-      <section id="education">
-        <EducationSection />
-      </section>
-
-      <section id="contact">
-        <ContactSection />
-      </section>
+      {/* Other Sections */}
+      <section id="experience"><ExperienceSection /></section>
+      <section id="projects"><ProjectsSection /></section>
+      <section id="skills"><SkillsSection /></section>
+      <section id="education"><EducationSection /></section>
+      <section id="contact"><ContactSection /></section>
 
       <Footer />
     </div>
