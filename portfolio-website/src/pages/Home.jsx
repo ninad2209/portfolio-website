@@ -198,7 +198,7 @@ export default function Home() {
             className="flex-1 max-w-[160px] px-4 py-3 bg-primary text-primary-foreground rounded-sm flex items-center justify-center gap-2"
           >
             Contact
-            <ArrowRight className="w-4 h-4" />
+            <ArrowDownRight className="w-4 h-4" />
           </button>
 
           <button
