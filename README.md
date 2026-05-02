@@ -72,10 +72,9 @@ To run this project locally:
 git clone https://github.com/your-username/portfolio.git
 
 # Navigate to project folder
-cd portfolio
+Go to portfolio-website
 
 # Install dependencies
 npm install
-
-# Start development server
+ Start development server
 npm run dev
