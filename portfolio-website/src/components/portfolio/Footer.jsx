@@ -77,7 +77,7 @@ export default function Footer() {
             </button>
 
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-              Engineering digital interfaces that deliver results. Available for freelance & full-time opportunities.
+              Building something secure, scalable, and impactful is my passion. Open for Opportunities.
             </p>
 
             <div className="mt-4 flex items-center gap-2">

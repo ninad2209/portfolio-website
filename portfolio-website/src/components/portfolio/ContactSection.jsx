@@ -123,7 +123,7 @@ export default function ContactSection() {
           </p>
 
           <h2 className="text-4xl md:text-5xl font-bold">
-            Let's build something <span className="text-primary">great</span>
+            Lets Develop something <span className="text-primary">awesome</span>
           </h2>
 
           <p className="text-muted-foreground mt-3">

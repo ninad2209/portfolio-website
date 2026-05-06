@@ -18,6 +18,14 @@ const education = [
     description: 'Gained knowledge in cloud computing, web development using Angular, Advanced Java, RDBMS, and fundamentals of AI/ML and DevOps.',
     highlights: ['Cloud Computing', 'Angular Web Development', 'Advanced Java', 'RDBMS', 'AI/ML Basics', 'DevOps'],
   },
+  {
+    degree: 'Bachelors in Computer Science',
+    institution: 'Savitribai Phule Pune University',
+    period: '2019 — 2022',
+    grade: 'Grade: 9.3 CGPA',
+    description: 'Got Familiar with Programming languages like C, C++, Java, Python and Web development using HTML, CSS, JavaScript. Developed problem-solving skills and understanding of data structures and algorithms.',
+    highlights: ['C', 'C++', 'Java', 'Python', 'Object-Oriented Programming', 'Computer Networks', 'Data Structures & Algorithms'],
+  },
 ];
 
 const certifications = [
