@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion , AnimatePresence} from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import project1 from "../../assets/images/project1.jpg";
+import project2 from "../../assets/images/project2.png";
+import project3 from "../../assets/images/project3.png";
 
 const projects = [
   {
@@ -13,6 +16,7 @@ const projects = [
     description:
       "An HCI prototype exploring an augmented reality experience for a Christmas market. Focused on interactive UI design and immersive frontend interactions using core web technologies.",
     github: "https://github.com/ninad2209/Christmas-Market-AR-Goggles-Prototype",
+    image: project1, 
     color: "from-purple-500/10 to-pink-500/5",
   },
   {
@@ -25,6 +29,7 @@ const projects = [
     description:
       "A modern e-learning platform built with React and Next.js, leveraging TypeScript for scalability and maintainability. Features a responsive UI and clean component-driven architecture.",
     github: "https://github.com/ninad2209/E-learning-Platform",
+    image: project2,
     color: "from-green-500/10 to-emerald-500/5",
   },
   {
@@ -36,7 +41,8 @@ const projects = [
     kpi: "+180% conversion",
     description:
       "High-performance e-commerce platform with real-time inventory, AI-powered recommendations, and seamless checkout UX.",
-    github: "https://github.com/ninad2209",
+    github: "https://github.com/ninad2209/E-Commerce-Website",
+    image: project3,
     color: "from-blue-500/10 to-indigo-500/5",
   },
   {
@@ -48,13 +54,13 @@ const projects = [
     kpi: "64% classification accuracy",
     description:
       "Built a machine learning-based fake call detection system using NLP techniques. Generated synthetic datasets, performed text preprocessing and TF-IDF vectorization, and trained Logistic Regression and SVM models to classify call transcripts as fake or genuine.",
-    github: "https://github.com/ninad2209",
+    github: "https://github.com/ninad2209/Fake-Call-Detection-",
     color: "from-red-500/10 to-orange-500/5",
   },
 ];
 
 export default function ProjectsSection() {
-  const [hovered, setHovered] = useState(null);
+  const [hoveredProject, setHoveredProject] = useState(null);
 
   return (
     <section className="py-24 lg:py-32 px-8 md:px-16 lg:px-24 border-t border-border bg-foreground/[0.015]">
@@ -97,8 +103,8 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              onMouseEnter={() => setHovered(project.id)}
-              onMouseLeave={() => setHovered(null)}
+              onMouseEnter={() => setHoveredProject(project)}
+              onMouseLeave={() => setHoveredProject(null)}
               className={`group relative block p-8 rounded-sm border border-border bg-gradient-to-br ${project.color} hover:border-primary/30 transition-all duration-300 cursor-pointer overflow-hidden`}
             >
               <div className="flex items-start justify-between mb-6">
@@ -114,7 +120,7 @@ export default function ProjectsSection() {
                 </div>
 
                 <motion.div
-                  animate={{ rotate: hovered === project.id ? 45 : 0 }}
+                  animate={{ rotate: hoveredProject?.id === project.id ? 45 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
                   <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
@@ -150,13 +156,29 @@ export default function ProjectsSection() {
               </div>
 
               <motion.div
-                animate={{ opacity: hovered === project.id ? 1 : 0 }}
+                animate={{ opacity: hoveredProject?.id === project.id ? 1 : 0 }}
                 className="absolute inset-0 pointer-events-none rounded-sm"
                 style={{ boxShadow: "inset 0 0 60px rgba(0,71,255,0.05)" }}
               />
             </motion.a>
           ))}
         </div>
+        <AnimatePresence>
+          {hoveredProject && (
+            <motion.div
+            key={hoveredProject.id}
+            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.92, y: 20 }}
+            transition={{ duration: 0.25 }}
+            className="hidden lg:block fixed right-16 top-1/2 -translate-y-1/2 w-[420px] h-[260px] rounded-xl overflow-hidden border border-border bg-background shadow-2xl z-50 pointer-events-none">
+              <img
+              src={hoveredProject.image}
+              alt={hoveredProject.title}
+              className="w-full h-full object-cover"/>
+              </motion.div>
+            )}
+            </AnimatePresence>
       </div>
     </section>
   );
