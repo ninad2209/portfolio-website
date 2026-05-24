@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import project1 from "../../assets/images/project1.jpg";
 import project2 from "../../assets/images/project2.png";
 import project3 from "../../assets/images/project3.png";
+import project4 from "../../assets/images/project4.jpg";
 
 const projects = [
   {
@@ -54,7 +55,8 @@ const projects = [
     kpi: "64% classification accuracy",
     description:
       "Built a machine learning-based fake call detection system using NLP techniques. Generated synthetic datasets, performed text preprocessing and TF-IDF vectorization, and trained Logistic Regression and SVM models to classify call transcripts as fake or genuine.",
-    github: "https://github.com/ninad2209/Fake-Call-Detection-",
+    github: "https://github.com/ninad2209/Fake-Call-Detection",
+    image: project4,
     color: "from-red-500/10 to-orange-500/5",
   },
 ];
