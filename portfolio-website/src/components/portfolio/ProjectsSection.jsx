@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import { motion , AnimatePresence} from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import project1 from "../../assets/images/project1.jpg";
+import project1 from "../../assets/images/project1.png";
 import project2 from "../../assets/images/project2.png";
 import project3 from "../../assets/images/project3.png";
 import project4 from "../../assets/images/project4.jpg";
 
 const projects = [
   {
-    id: 1,
-    title: "Christmas Market AR Goggles Prototype",
-    category: "Human Computer Interaction",
-    year: "2026",
-    tech: ["JavaScript", "CSS", "HTML"],
-    kpi: "AR Prototype",
-    description:
-      "An HCI prototype exploring an augmented reality experience for a Christmas market. Focused on interactive UI design and immersive frontend interactions using core web technologies.",
-    github: "https://github.com/ninad2209/Christmas-Market-AR-Goggles-Prototype",
-    image: project1, 
-    color: "from-purple-500/10 to-pink-500/5",
+  id: 1,
+  title: "Secure Multi-Party Computation Platform",
+  category: "Privacy Enhancing Technologies",
+  year: "2026",
+  tech: ["Python", "Flask", "Cryptography", "Multiprocessing"],
+  kpi: "10/10 Tests Passing",
+  description:
+    "A fully functional SMC engine where multiple parties jointly compute arithmetic expressions over private inputs without revealing them to each other. Implements additive secret sharing, Beaver triple multiplication protocol, and a custom grade checker application demonstrating real world privacy preserving computation.",
+  github: "https://github.com/ninad2209/Secure-Multi-Party-Computation-Platform",
+  image: project1,
+  color: "from-fuchsia-500/10 to-cyan-500/5",
   },
   {
     id: 2,
@@ -84,7 +84,7 @@ export default function ProjectsSection() {
           </div>
 
           <a
-            href="https://github.com/ninad2209"
+            href="https://github.com/ninad2209?tab=repositories"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 font-mono text-xs tracking-wide text-muted-foreground hover:text-foreground transition-colors group"
