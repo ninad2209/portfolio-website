@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle, Sparkles } from "lucide-react";
+import { Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,14 +13,23 @@ const serviceOptions = [
   "Product Management",
 ];
 
-// ─── Success Overlay ──────────────────────────────────────────────────────────
-// Full-section animated success screen that replaces the form briefly
-function SuccessOverlay({ name, onDone }) {
-  // Auto-dismiss after 4 seconds
+// ─── Typing dots indicator ────────────────────────────────────────────────────
+function TypingDots() {
+  const [dots, setDots] = useState("");
   useEffect(() => {
-    const t = setTimeout(onDone, 4000);
+    const t = setInterval(() => setDots((d) => (d.length >= 3 ? "" : d + ".")), 400);
+    return () => clearInterval(t);
+  }, []);
+  return <span>// transmitting{dots}</span>;
+}
+
+// ─── Success Overlay ──────────────────────────────────────────────────────────
+function SuccessOverlay({ name, onDone }) {
+  // Empty dependency array = runs once on mount only, no re-trigger on re-renders
+  useEffect(() => {
+    const t = setTimeout(onDone, 6000);
     return () => clearTimeout(t);
-  }, [onDone]);
+  }, []);
 
   return (
     <motion.div
@@ -74,7 +83,7 @@ function SuccessOverlay({ name, onDone }) {
         </p>
       </motion.div>
 
-      {/* Animated dashes — hacker aesthetic */}
+      {/* Hacker transmitting indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -85,16 +94,6 @@ function SuccessOverlay({ name, onDone }) {
       </motion.div>
     </motion.div>
   );
-}
-
-// Small animated "transmitting..." indicator
-function TypingDots() {
-  const [dots, setDots] = useState("");
-  useEffect(() => {
-    const t = setInterval(() => setDots((d) => (d.length >= 3 ? "" : d + ".")), 400);
-    return () => clearInterval(t);
-  }, []);
-  return <span>// transmitting{dots}</span>;
 }
 
 
@@ -156,7 +155,7 @@ export default function ContactSection() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Failed to send message");
 
-      setSentName(formData.name.split(" ")[0]); // store first name for success screen
+      setSentName(formData.name.split(" ")[0]);
       setIsSuccess(true);
       setLastSent(now);
       setFormData({ name: "", email: "", message: "" });
@@ -196,14 +195,12 @@ export default function ContactSection() {
         <div className="relative min-h-[460px]">
           <AnimatePresence mode="wait">
             {isSuccess ? (
-              // ── SUCCESS OVERLAY ──
               <SuccessOverlay
                 key="success"
                 name={sentName}
                 onDone={() => setIsSuccess(false)}
               />
             ) : (
-              // ── FORM ──
               <motion.form
                 key="form"
                 onSubmit={handleSubmit}
@@ -284,7 +281,6 @@ export default function ContactSection() {
                     <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </span>
 
-                  {/* Spinner while sending */}
                   {isSending && (
                     <span className="absolute inset-0 flex items-center justify-center gap-2">
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
