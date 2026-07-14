@@ -13,6 +13,7 @@ import SkillsSection from "../components/portfolio/SkillsSection";
 import EducationSection from "../components/portfolio/EducationSection";
 import ContactSection from "../components/portfolio/ContactSection";
 import Footer from "../components/portfolio/Footer";
+import LoadingSequence from "../components/portfolio/LoadingSequence"
 
 const PORTRAIT_URL = profileImg;
 const scrollToSection = (id) =>
@@ -235,6 +236,9 @@ export default function Home() {
 
   return (
     <div className="bg-background font-inter relative pb-24 sm:pb-0">
+
+    {/* ── Loading Screen — shows on first page load, then fades out ── */}
+      <LoadingSequence />
 
       {/* TOP BAR — Logo + FloatingNav + DarkModeToggle aligned in one row */}
       <div className="hidden lg:flex fixed top-5 left-0 right-0 z-50 items-center px-8">
