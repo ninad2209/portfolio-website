@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const LOGO_URL = "https://media.base44.com/images/public/69edcf577d37e23685dd39b0/6f010eb22_logo.png";
-const TOTAL_DURATION = 5200;
 const CHARS = "!<>-_\\/[]{}—=+*^?#01ABCDEF";
+const TICK = 950; // ms per countdown number
+const RING_CIRC = 2 * Math.PI * 46;
 
 // Scramble (decode) text effect — characters resolve left → right
 function useScramble(text, active, duration = 1000) {
@@ -79,30 +80,21 @@ function ParticleField() {
 
 export default function LoadingSequence() {
   const [done, setDone] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [scrambleActive, setScrambleActive] = useState(false);
+  const [count, setCount] = useState(null); // null = idle, then 3 → 2 → 1
   const welcomeText = useScramble("Ninad's Portfolio", scrambleActive, 1100);
 
   useEffect(() => {
-    const scrambleTimer = setTimeout(() => setScrambleActive(true), 1700);
-    const start = performance.now();
-    let raf;
-    const tick = (now) => {
-      const elapsed = now - start;
-      const pct = Math.min(100, (elapsed / TOTAL_DURATION) * 100);
-      setProgress(pct);
-      if (elapsed < TOTAL_DURATION) {
-        raf = requestAnimationFrame(tick);
-      } else {
-        setTimeout(() => setDone(true), 250);
-      }
-    };
-    raf = requestAnimationFrame(tick);
-    return () => {
-      cancelAnimationFrame(raf);
-      clearTimeout(scrambleTimer);
-    };
+    const timers = [];
+    timers.push(setTimeout(() => setScrambleActive(true), 1700));
+    // Countdown 3 → 2 → 1 after scramble finishes
+    timers.push(setTimeout(() => setCount(3), 3000));
+    timers.push(setTimeout(() => setCount(2), 3000 + TICK));
+    timers.push(setTimeout(() => setCount(1), 3000 + TICK * 2));
+    // Reveal portfolio — extra pause after "1" so it's clearly visible
+    timers.push(setTimeout(() => setDone(true), 3000 + TICK * 2 + 1300));
+    return () => timers.forEach(clearTimeout);
   }, []);
 
   const handleMouse = (e) => {
@@ -116,7 +108,7 @@ export default function LoadingSequence() {
       {!done && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, filter: 'blur(8px)' }}
+          exit={{ opacity: 0, filter: 'blur(12px)', scale: 1.05 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           onMouseMove={handleMouse}
           className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center overflow-hidden"
@@ -137,6 +129,24 @@ export default function LoadingSequence() {
           />
 
           <ParticleField />
+
+          {/* Dancing ghost number in background */}
+          <AnimatePresence>
+            {count !== null && (
+              <motion.div
+                key={count}
+                initial={{ scale: 0.4, opacity: 0, rotate: -8 }}
+                animate={{ scale: 1.6, opacity: 0.07, rotate: 0 }}
+                exit={{ scale: 2.4, opacity: 0 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 flex items-center justify-center pointer-events-none"
+              >
+                <span className="font-inter font-black text-[40vw] leading-none text-white select-none">
+                  {count}
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Ambient cobalt glow */}
           <motion.div
@@ -215,24 +225,68 @@ export default function LoadingSequence() {
             </h1>
           </div>
 
-          {/* Counter + shimmering progress */}
-          <div className="relative mt-12 w-64 md:w-72 z-10">
-            <div className="flex justify-between mb-2 font-mono text-[10px] text-white/40">
-              <span>LOADING</span>
-              <span>{Math.floor(progress)}%</span>
-            </div>
-            <div className="h-[2px] w-full bg-white/10 overflow-hidden rounded-full relative">
-              <div
-                style={{ width: `${progress}%` }}
-                className="h-full bg-gradient-to-r from-[#245a9e] via-[#00a6e3] to-white relative"
-              />
-              <motion.div
-                initial={{ x: '-100%' }}
-                animate={{ x: '300%' }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute top-0 h-full w-12 bg-gradient-to-r from-transparent via-white/70 to-transparent"
-              />
-            </div>
+          {/* Countdown bubble */}
+          <div className="relative mt-10 z-10 h-28">
+            <AnimatePresence>
+              {count !== null && (
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 1.8, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center"
+                  style={{
+                    background:
+                      'radial-gradient(circle, rgba(0,166,227,0.18) 0%, rgba(0,166,227,0.04) 70%)',
+                    boxShadow:
+                      '0 0 30px rgba(0,166,227,0.35), inset 0 0 20px rgba(0,166,227,0.15)',
+                    border: '1px solid rgba(0,166,227,0.35)',
+                  }}
+                >
+                  {/* Shockwave ring on each tick */}
+                  <motion.div
+                    key={`shock-${count}`}
+                    initial={{ scale: 0.9, opacity: 0.7 }}
+                    animate={{ scale: 2.2, opacity: 0 }}
+                    transition={{ duration: 0.7, ease: 'easeOut' }}
+                    className="absolute inset-0 rounded-full border-2 border-[#00a6e3] pointer-events-none"
+                  />
+                  {/* Draining SVG ring */}
+                  <svg
+                    className="absolute inset-0 w-full h-full -rotate-90"
+                    viewBox="0 0 100 100"
+                  >
+                    <circle
+                      cx="50" cy="50" r="46"
+                      fill="none" stroke="rgba(0,166,227,0.15)" strokeWidth="2"
+                    />
+                    <motion.circle
+                      key={`ring-${count}`}
+                      cx="50" cy="50" r="46"
+                      fill="none" stroke="#00a6e3" strokeWidth="2"
+                      strokeDasharray={RING_CIRC}
+                      initial={{ strokeDashoffset: RING_CIRC }}
+                      animate={{ strokeDashoffset: 0 }}
+                      transition={{ duration: TICK / 1000, ease: 'linear' }}
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  {/* The number */}
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={count}
+                      initial={{ scale: 0.3, opacity: 0, y: 8 }}
+                      animate={{ scale: 1, opacity: 1, y: 0 }}
+                      exit={{ scale: 1.6, opacity: 0, y: -8, transition: { duration: 0.15, ease: [0.22, 1, 0.36, 1] } }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      className="relative font-mono text-3xl md:text-4xl font-bold text-white"
+                    >
+                      {count}
+                    </motion.span>
+                  </AnimatePresence>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Vignette */}
